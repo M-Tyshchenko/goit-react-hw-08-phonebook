@@ -44,7 +44,6 @@ export const SubmitBtn = styled.button`
 export const StyledField = styled(Field)`
   border-color: #eef0f2;
   border-style: solid;
-  /* width: 200px; */
 
   &:hover,
   &:focus {

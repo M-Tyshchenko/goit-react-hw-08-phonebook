@@ -1,11 +1,11 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperations';
 import {
   ErrMessage,
   FormItem,
-  MainTitle,
+  StyledField,
   StyledForm,
   SubmitBtn,
 } from './Login.styled';
@@ -19,12 +19,13 @@ const Login = () => {
   const dispatch = useDispatch();
   return (
     <div>
-      <MainTitle>Login</MainTitle>
+      {/* <MainTitle>Login</MainTitle> */}
       <Formik
         initialValues={{
           email: '',
           password: '',
         }}
+        validationSchema={schema}
         onSubmit={(values, actions) => {
           dispatch(loginUser({ ...values }));
           actions.resetForm();
@@ -33,7 +34,7 @@ const Login = () => {
         <StyledForm>
           <FormItem>
             Email
-            <Field
+            <StyledField
               id="email"
               name="email"
               placeholder="jonsoniuk@mail.com"
@@ -44,7 +45,7 @@ const Login = () => {
 
           <FormItem>
             Password
-            <Field
+            <StyledField
               id="password"
               name="password"
               placeholder="Enter password"
@@ -53,7 +54,7 @@ const Login = () => {
             <ErrMessage name="password" component="div" />
           </FormItem>
 
-          <SubmitBtn type="submit">Log in</SubmitBtn>
+          <SubmitBtn type="submit">Login</SubmitBtn>
         </StyledForm>
       </Formik>
     </div>

@@ -5,7 +5,6 @@ import { register } from 'redux/auth/authOperations';
 import {
   ErrMessage,
   FormItem,
-  MainTitle,
   StyledField,
   StyledForm,
   SubmitBtn,
@@ -21,7 +20,7 @@ const Register = () => {
   const dispatch = useDispatch();
   return (
     <div>
-      <MainTitle>Sign Up</MainTitle>
+      {/* <MainTitle>Sign Up</MainTitle> */}
       <Formik
         initialValues={{
           name: '',
@@ -30,7 +29,8 @@ const Register = () => {
         }}
         validationSchema={schema}
         onSubmit={(values, actions) => {
-          dispatch(register({ ...values }));
+          console.log('register form values', JSON.stringify(values));
+          dispatch(register(JSON.stringify(values)));
           actions.resetForm();
         }}
       >
