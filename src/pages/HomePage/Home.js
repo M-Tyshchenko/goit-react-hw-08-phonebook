@@ -1,15 +1,13 @@
-import { MainTitleContainer } from './Home.styled';
+import { MainTitle } from './Home.styled';
 
 const Home = () => {
   return (
-    <MainTitleContainer>
-      <h1>
-        Phonebook manager welcome page{' '}
-        <span role="img" aria-label="Greeting icon">
-          💁‍♀️
-        </span>
-      </h1>
-    </MainTitleContainer>
+    <MainTitle>
+      Phonebook manager welcome page{' '}
+      <span role="img" aria-label="Greeting icon">
+        💁‍♀️
+      </span>
+    </MainTitle>
   );
 };
 

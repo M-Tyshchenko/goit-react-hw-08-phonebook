@@ -9,5 +9,5 @@ export const PageContainer = styled.div`
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 `;

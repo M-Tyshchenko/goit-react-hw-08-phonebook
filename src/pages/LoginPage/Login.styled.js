@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 
+export const LoginFormContainer = styled.div`
+  margin: 0 auto;
+`;
+
 export const MainTitle = styled.h1`
   margin-bottom: 16px;
   font-weight: 700;

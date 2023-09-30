@@ -5,7 +5,7 @@ import { NavList, StyledLink } from './Navigation.styled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log('isLoggedIn', isLoggedIn);
+  // console.log('isLoggedIn', isLoggedIn);
 
   return (
     <div>

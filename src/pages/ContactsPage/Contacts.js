@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThreeDots } from 'react-loader-spinner';
-import { Container, MainTitle, Title } from './Contacts.styled';
-import { ContactForm } from 'components/ContactForm/ContactForm';
+import { Container } from './Contacts.styled';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { selectError, selectIsLoading } from 'redux/selectors';
@@ -19,9 +18,6 @@ const Contacts = () => {
 
   return (
     <Container>
-      <MainTitle>Phonebook</MainTitle>
-      <ContactForm />
-      <Title>Contacts</Title>
       <Filter />
       {isLoading && !error && (
         <ThreeDots
