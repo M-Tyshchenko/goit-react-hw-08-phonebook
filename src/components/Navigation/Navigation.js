@@ -5,10 +5,10 @@ import { NavList, StyledLink } from './Navigation.styled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn);
+  console.log('isLoggedIn', isLoggedIn);
 
   return (
-    <>
+    <div>
       {isLoggedIn ? (
         <UserMenu />
       ) : (
@@ -21,7 +21,6 @@ export const Navigation = () => {
           </li>
         </NavList>
       )}
-      <hr />
-    </>
+    </div>
   );
 };

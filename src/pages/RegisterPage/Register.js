@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 import { register } from 'redux/auth/authOperations';
 import {
   ErrMessage,
@@ -9,6 +10,7 @@ import {
   StyledForm,
   SubmitBtn,
 } from './Register.styled';
+import { selectAuthError } from 'redux/auth/authSelectors';
 
 const schema = Yup.object().shape({
   name: Yup.string().trim().required('Required'),
@@ -18,6 +20,7 @@ const schema = Yup.object().shape({
 
 const Register = () => {
   const dispatch = useDispatch();
+  const errorAuth = useSelector(selectAuthError);
   return (
     <div>
       {/* <MainTitle>Sign Up</MainTitle> */}
@@ -29,9 +32,13 @@ const Register = () => {
         }}
         validationSchema={schema}
         onSubmit={(values, actions) => {
-          console.log('register form values', JSON.stringify(values));
-          dispatch(register(JSON.stringify(values)));
+          if (errorAuth !== null) {
+            toast.error(`Something went wrong. Try again`);
+            return;
+          }
+          dispatch(register({ ...values }));
           actions.resetForm();
+          toast.success('User created and logged in');
         }}
       >
         <StyledForm>
@@ -65,6 +72,7 @@ const Register = () => {
           <SubmitBtn type="submit">Sign Up</SubmitBtn>
         </StyledForm>
       </Formik>
+      <Toaster />
     </div>
   );
 };

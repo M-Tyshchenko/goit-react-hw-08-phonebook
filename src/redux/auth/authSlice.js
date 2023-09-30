@@ -6,19 +6,25 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const handleLoginUserFulfilled = (state, action) => {
-  console.log(action.payload.user);
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
+  state.error = null;
+};
+
+const handleLoginUserRejected = (state, action) => {
+  state.error = action.payload;
 };
 
 const handleLogoutUserFulfilled = state => {
   state.user = { name: null, email: null };
   state.token = null;
   state.isLoggedIn = false;
+  state.error = null;
 };
 
 const handleRefreshUserPending = state => state.isRefreshing.true;
@@ -27,12 +33,10 @@ const handleRefreshUserFulfilled = (state, action) => {
   state.user = action.payload;
   state.isLoggedIn = true;
   state.isRefreshing = false;
+  state.error = null;
 };
 
-const handleRefreshUserRejected = (state, action) => {
-  state.isLoggedIn = false;
-  state.error = action.payload;
-};
+const handleRefreshUserRejected = state => (state.isRefreshing = false);
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -40,7 +44,9 @@ export const authSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, handleLoginUserFulfilled)
+      .addCase(register.rejected, handleLoginUserRejected)
       .addCase(loginUser.fulfilled, handleLoginUserFulfilled)
+      .addCase(loginUser.rejected, handleLoginUserRejected)
       .addCase(logoutUser.fulfilled, handleLogoutUserFulfilled)
       .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleRefreshUserFulfilled)

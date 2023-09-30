@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import { AppBar } from 'components/AppBar/AppBar';
 import { GlobalStyles } from 'components/GlobalStyle';
-import { LayoutContainer } from './Layout.styled';
+import { LayoutContainer, PageContainer } from './Layout.styled';
 
 const Layout = () => {
   return (
@@ -27,7 +27,9 @@ const Layout = () => {
           />
         }
       >
-        <Outlet />
+        <PageContainer>
+          <Outlet />
+        </PageContainer>
       </Suspense>
 
       <GlobalStyles />
