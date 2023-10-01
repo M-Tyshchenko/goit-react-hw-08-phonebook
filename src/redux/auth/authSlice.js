@@ -12,6 +12,7 @@ const handleLoginUserFulfilled = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
+  state.authError = null;
 };
 
 const handleLogoutUserFulfilled = state => {

@@ -10,6 +10,7 @@ import {
   StyledForm,
   SubmitBtn,
 } from './Register.styled';
+import { Toaster } from 'react-hot-toast';
 
 const schema = Yup.object().shape({
   name: Yup.string().trim().required('Required'),
@@ -29,9 +30,8 @@ const Register = () => {
           password: '',
         }}
         validationSchema={schema}
-        onSubmit={(values, actions) => {
+        onSubmit={values => {
           dispatch(register({ ...values }));
-          actions.resetForm();
         }}
       >
         <StyledForm>
@@ -64,6 +64,7 @@ const Register = () => {
           <SubmitBtn type="submit">Sign Up</SubmitBtn>
         </StyledForm>
       </Formik>
+      <Toaster />
     </RegisterFormContainer>
   );
 };

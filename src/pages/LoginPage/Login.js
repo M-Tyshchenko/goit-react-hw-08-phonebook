@@ -1,7 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-
 import { loginUser } from 'redux/auth/authOperations';
 import {
   ErrMessage,
@@ -11,6 +10,7 @@ import {
   StyledForm,
   SubmitBtn,
 } from './Login.styled';
+import { Toaster } from 'react-hot-toast';
 
 const schema = Yup.object().shape({
   email: Yup.string().email().required('Required'),
@@ -28,10 +28,8 @@ const Login = () => {
           password: '',
         }}
         validationSchema={schema}
-        onSubmit={(values, actions) => {
+        onSubmit={values => {
           dispatch(loginUser({ ...values }));
-
-          actions.resetForm();
         }}
       >
         <StyledForm>
@@ -42,7 +40,6 @@ const Login = () => {
               name="email"
               placeholder="jonsoniuk@mail.com"
               type="email"
-              // autoComplete="off"
             />
             <ErrMessage name="email" component="div" />
           </FormItem>
@@ -62,6 +59,7 @@ const Login = () => {
           <SubmitBtn type="submit">Login</SubmitBtn>
         </StyledForm>
       </Formik>
+      <Toaster />
     </LoginFormContainer>
   );
 };
